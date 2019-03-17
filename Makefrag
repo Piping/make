@@ -1,0 +1,29 @@
+# vim: filetype=make
+
+TARGET += libctlmsg.a
+
+SOURCES += exmaple.c
+
+TGT_CFLAGS += -ggdb3 -fPIC
+
+TGT_INCDIRS +=  /sources/include
+
+TGT_DEFS += DEBUG
+
+TGT_LDFLAGS += -Wl,-rpaht,/usr/lib
+
+TGT_LDFLAGS += -L/sources/build/
+
+TGT_LDFLAGS += -ldemo
+
+TGT_PREREQS += libdemo.so
+
+SUBMAKEFILES += /sources/subdir/Makefrag
+
+ifeq ($(CONFIG_ABC),y)
+TGT_DEFS += ABC
+endif
+
+ifeq ($(CONFIG_MOD),y)
+SUBMAKEFILES += /sources/subdir/module/Makefrag
+endif
